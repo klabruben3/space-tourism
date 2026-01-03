@@ -16,9 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MediaQuery>
-          {children}
-        </MediaQuery>
+        <MediaQuery>{children}</MediaQuery>
       </body>
     </html>
   );

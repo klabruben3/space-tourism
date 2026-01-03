@@ -1,6 +1,6 @@
 import { Header, TabPage } from "@/components/layout";
 import { Background } from "@/components/features";
-import { TabProvider } from "@/contexts";
+import { TabProvider, FontProvider } from "@/contexts";
 
 export default function Home() {
   return (
@@ -8,8 +8,10 @@ export default function Home() {
       <Background />
 
       <div className="grid grid-rows-[88px_1fr] min-[376px]:grid-rows-[96px_1fr] h-screen pt-0 min-[768px]:pt-[40px]">
-        <Header />
-        {/* <TabPage /> */}
+        <FontProvider>
+          <Header />
+          <TabPage />
+        </FontProvider>
       </div>
     </TabProvider>
   );

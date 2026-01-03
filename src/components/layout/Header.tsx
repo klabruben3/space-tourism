@@ -1,6 +1,6 @@
 "use client";
 import logo from "@/assets/shared/logo.svg";
-import { useMediaQuery, useTabContext } from "@/contexts";
+import { useFont, useMediaQuery, useTabContext } from "@/contexts";
 import data from "@/data.json";
 import { Tab } from "@/types";
 import close from "@/assets/shared/icon-close.svg";
@@ -10,6 +10,7 @@ import { useState } from "react";
 export default function Header() {
   const { tab, setTab } = useTabContext();
   const device = useMediaQuery();
+  const font = useFont("Barlow_Condensed")
   const [navState, setNavState] = useState<"open" | "close">("close");
 
   return (
@@ -30,7 +31,7 @@ export default function Header() {
       )}
 
       <nav
-        className={`block min-[375px]:flex justify-end transition-[backdrop-filter] duration-300 pl-[32px] min-[375px]:px-[40px] min-[768px]:px-[64px] w-[254px] min-[375px]:min-w-[640px] min-[768px]:w-[736px] bg-transparent min-[375px]:bg-white/5 h-full absolute top-0 right-0 min-[375px]:static overflow-hidden ${
+        className={`${font.className} block min-[375px]:flex justify-end transition-[backdrop-filter] duration-300 pl-[32px] min-[375px]:px-[40px] min-[768px]:px-[64px] w-[254px] min-[375px]:min-w-[640px] min-[768px]:w-[736px] bg-transparent min-[375px]:bg-white/5 h-full absolute top-0 right-0 min-[375px]:static overflow-hidden ${
           navState == "open" && device == "mobile"
             ? "pointer-events-auto backdrop-blur-md"
             : null
@@ -38,7 +39,8 @@ export default function Header() {
           navState == "close" && device == "mobile"
             ? "pointer-events-none backdrop-none"
             : null
-        }`}
+        }
+        ${device!="mobile"? "backdrop-blur-md" : null}`}
       >
         {device == "mobile" && (
           <div
@@ -64,9 +66,9 @@ export default function Header() {
                 className="flex cursor-pointer h-full items-center w-full"
                 onClick={() => setTab(currTab)}
               >
-                <div className="flex items-center gap-[8px] min-[375px]:gap-[12px]">
-                  <span>0{i}</span>
-                  <span className="capitalize">{currTab}</span>
+                <div className="text-[16px] flex items-center gap-[8px] min-[375px]:gap-[12px]">
+                  <span className="font-bold">0{i}</span>
+                  <span className="uppercase">{currTab}</span>
                 </div>
               </button>
               <div

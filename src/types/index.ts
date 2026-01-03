@@ -1,1 +1,1 @@
-export type { Device, Tab } from "./types";
+export type { Device, Tab, FontMap } from "./types";
