@@ -2,11 +2,11 @@
 import { Device } from "@/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-const QueryContext = createContext<Device | undefined>(undefined);
+const QueryContext = createContext<Device | undefined | null>(undefined);
 
 // This is the provider                                                                                                                                                                                                         By Ruben
 export function MediaQuery({ children }: { children: React.ReactNode }) {
-  const [device, setDevice] = useState<Device>("mobile");
+  const [device, setDevice] = useState<Device | null>(null);
 
   useEffect(() => {
     const tabletQuery = window.matchMedia(
@@ -43,7 +43,7 @@ export function MediaQuery({ children }: { children: React.ReactNode }) {
 // Consumer
 export function useMediaQuery() {
   const device = useContext(QueryContext);
-  if (!device) {
+  if (device === undefined) {
     throw new Error(
       "useMediaQuery can only be used in a QueryContext Provider"
     );

@@ -1,26 +1,37 @@
 "use client";
 import logo from "@/assets/shared/logo.svg";
 import { useFont, useMediaQuery, useTabContext } from "@/contexts";
-import data from "@/data.json";
 import { Tab } from "@/types";
 import close from "@/assets/shared/icon-close.svg";
 import open from "@/assets/shared/icon-hamburger.svg";
 import { useState } from "react";
+import { motion } from "motion/react";
 
 export default function Header() {
   const { tab, setTab } = useTabContext();
   const device = useMediaQuery();
-  const font = useFont("Barlow_Condensed")
+  const font = useFont("Barlow_Condensed");
   const [navState, setNavState] = useState<"open" | "close">("close");
+  const tabs: Tab[] = ["home", "destinations", "crew", "technology"];
+  if(!device) return null;
 
   return (
-    <header className="flex justify-between min-[768px]:grid grid-cols-[auto_1fr_auto] items-center">
-      <img
+    <header className="flex justify-between min-[768px]:grid grid-cols-[auto_1fr_auto] items-center z-50">
+      <motion.img
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 15,
+          duration: 0.5,
+          delay: 0.5,
+        }}
         src={logo.src}
         className="mx-[24px] min-[375px]:mx-[40px] min-[768px]:mx-[64px] w-[40px] min-[375px]:w-[48px]"
       />
       {device == "desktop" && (
-        <div className="h-[1px] bg-[white] z-1 scale-x-105 origin-left"></div>
+        <div className="h-[1px] bg-[white] scale-x-105 origin-left"></div>
       )}
       {device == "mobile" && navState == "close" && (
         <div className="py-[32px] pr-[24px] flex justify-end">
@@ -31,16 +42,18 @@ export default function Header() {
       )}
 
       <nav
-        className={`${font.className} block min-[375px]:flex justify-end transition-[backdrop-filter] duration-300 pl-[32px] min-[375px]:px-[40px] min-[768px]:px-[64px] w-[254px] min-[375px]:min-w-[640px] min-[768px]:w-[736px] bg-transparent min-[375px]:bg-white/5 h-full absolute top-0 right-0 min-[375px]:static overflow-hidden ${
+        className={`${
+          font.className
+        } block min-[375px]:flex justify-end transition-[backdrop-filter] duration-300 pl-[32px] min-[375px]:px-[40px] min-[768px]:px-[64px] w-[254px] min-[375px]:min-w-[640px] min-[768px]:w-[736px] bg-transparent min-[375px]:bg-white/5 h-full absolute top-0 right-0 min-[375px]:static overflow-hidden ${
           navState == "open" && device == "mobile"
             ? "pointer-events-auto backdrop-blur-md"
             : null
         } ${
           navState == "close" && device == "mobile"
-            ? "pointer-events-none backdrop-none"
+            ? "pointer-events-none"
             : null
         }
-        ${device!="mobile"? "backdrop-blur-md" : null}`}
+        ${device != "mobile" ? "backdrop-blur-md" : null}`}
       >
         {device == "mobile" && (
           <div
@@ -54,11 +67,13 @@ export default function Header() {
           </div>
         )}
         <ul className="mt-[48px] min-[375px]:mt-[initial] flex flex-col min-[375px]:flex-row gap-[32px] h-fit min-[375px]:h-full">
-          {(Object.keys(data) as Tab[]).map((currTab, i) => (
+          {tabs.map((currTab, i) => (
             <li
               key={currTab}
               className={`relative group h-full translation-transform duration-300 ${
-                navState == "open" || device != "mobile" ? "translate-x-0" : "translate-x-full"
+                navState == "open" || device != "mobile"
+                  ? "translate-x-0"
+                  : "translate-x-full"
               }`}
               style={{ transitionDelay: `${i * 50}ms` }}
             >

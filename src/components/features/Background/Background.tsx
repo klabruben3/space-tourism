@@ -4,6 +4,7 @@ import { backgrounds } from "./bgImports";
 
 export default function Background() {
   const device = useMediaQuery();
+  if(!device) return;
   const {tab} = useTabContext();
   const bg = backgrounds[tab][device]
 
