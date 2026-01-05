@@ -16,7 +16,7 @@ export default function Header() {
   if(!device) return null;
 
   return (
-    <header className="flex justify-between min-[768px]:grid grid-cols-[auto_1fr_auto] items-center z-50">
+    <header className="top-0 flex justify-between min-[768px]:grid grid-cols-[auto_1fr_auto] items-center z-30">
       <motion.img
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -31,7 +31,7 @@ export default function Header() {
         className="mx-[24px] min-[375px]:mx-[40px] min-[768px]:mx-[64px] w-[40px] min-[375px]:w-[48px]"
       />
       {device == "desktop" && (
-        <div className="h-[1px] bg-[white] scale-x-105 origin-left"></div>
+        <div className="h-[1px] bg-[white]/25 scale-x-105 origin-left z-50"></div>
       )}
       {device == "mobile" && navState == "close" && (
         <div className="py-[32px] pr-[24px] flex justify-end">
@@ -73,7 +73,7 @@ export default function Header() {
               className={`relative group h-full translation-transform duration-300 ${
                 navState == "open" || device != "mobile"
                   ? "translate-x-0"
-                  : "translate-x-full"
+                  : "translate-x-[calc(100%+5px)]"
               }`}
               style={{ transitionDelay: `${i * 50}ms` }}
             >
@@ -90,7 +90,7 @@ export default function Header() {
                 className={`h-full w-[3px] absolute right-0 top-0 min-[375px]:bottom-0 min-[375px]:top-[initial] min-[375px]:right-[initial] min-[375px]:h-[3px] min-[375px]:w-full ${
                   tab == currTab
                     ? "bg-white scale-100"
-                    : "bg-white/30 scale-y-0 group-hover:scale-100 min-[375px]:scale-y-[initial] min-[375px]:scale-x-0"
+                    : "bg-white/50 scale-y-0 group-hover:scale-100 min-[375px]:scale-y-[initial] min-[375px]:scale-x-0"
                 } transition-transform origin-top min-[375px]:origin-left duration-300`}
               ></div>
             </li>

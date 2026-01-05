@@ -1,13 +1,19 @@
 "use client";
-import { Home } from "@/components/features";
-import { useTabContext } from "@/contexts";
+import { Home, Destinations } from "@/components/features";
+import { DestinationProvider, useFonts, useTabContext } from "@/contexts";
 
 export default function TabPage() {
   const { tab } = useTabContext();
-  
+  const fonts = useFonts()
+
   return (
-    <div className="flex flex-col">
-      {tab == "home" && (<Home />)}
+    <div className="flex">
+      {tab == "home" && <Home />}
+      {tab == "destinations" && (
+        <DestinationProvider>
+          <Destinations fonts={fonts}/>
+        </DestinationProvider>
+      )}
     </div>
   );
 }

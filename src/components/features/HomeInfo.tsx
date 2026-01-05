@@ -37,7 +37,7 @@ export default function HomeInfo() {
           duration: 0.8,
           delay: 1,
         }}
-        className={`${fonts.Barlow.className} text-[#d0d6f9] text-[15px] min-[375px]:text-[16px] min-[768px]:text-[18px]`}
+        className={`${fonts.Barlow.className} leading-[180%] text-[#d0d6f9] text-[15px] min-[375px]:text-[16px] min-[768px]:text-[18px]`}
       >
         Let's face it; if you want to go to space, you might as well genuinely
         go to outer space and not hover kind of on the edge of it. Well sit

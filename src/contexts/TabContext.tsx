@@ -1,20 +1,10 @@
 "use client";
-import { Tab } from "@/types";
+import type { ChildrenProp, Tab, TabProp } from "@/types";
 import { createContext, useContext, useState } from "react";
-import type { ReactNode, Dispatch, SetStateAction } from "react";
 
-type TabContextProp = {
-  tab: Tab;
-  setTab: Dispatch<SetStateAction<Tab>>;
-};
+const TabContext = createContext<TabProp<Tab> | undefined>(undefined);
 
-type TabProviderProp = {
-  children: ReactNode;
-};
-
-const TabContext = createContext<TabContextProp | null>(null);
-
-export function TabProvider({ children }: TabProviderProp) {
+export function TabProvider({ children }: ChildrenProp) {
   const [tab, setTab] = useState<Tab>("home");
 
   return (
