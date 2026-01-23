@@ -3,7 +3,7 @@ import { Background } from "@/components/features";
 import { TabProvider, FontProvider } from "@/contexts";
 
 export default function Home() {
-  return (
+  return (<>
     <TabProvider>
       <Background />
 
@@ -14,5 +14,6 @@ export default function Home() {
         </FontProvider>
       </Wrapper>
     </TabProvider>
+    </>
   );
 }

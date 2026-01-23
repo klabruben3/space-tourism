@@ -1,1 +1,1 @@
-export { default as TextType } from "./TextType";
+export { default as TypeFast } from "./TypeFast";

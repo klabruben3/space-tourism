@@ -12,6 +12,8 @@ export type FontMap = {
 };
 
 export type Destination = "moon" | "mars" | "europa" | "titan"
+export type Crew = "douglashurley" | "markshuttleworth" | "victorglover" | "anoushehansari"
+export type Tech = "launchvehicle" | "spacecapsule" | "spaceport"
 
 
 export type TabProp<T> = {

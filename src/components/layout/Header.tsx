@@ -16,7 +16,7 @@ export default function Header() {
   if(!device) return null;
 
   return (
-    <header className="top-0 flex justify-between min-[768px]:grid grid-cols-[auto_1fr_auto] items-center z-30">
+    <header className="top-0 flex justify-between min-[1000px]:grid grid-cols-[auto_1fr_auto] items-center z-30">
       <motion.img
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -28,7 +28,7 @@ export default function Header() {
           delay: 0.5,
         }}
         src={logo.src}
-        className="mx-[24px] min-[375px]:mx-[40px] min-[768px]:mx-[64px] w-[40px] min-[375px]:w-[48px]"
+        className="mx-[24px] min-[500px]:mx-[40px] min-[1000px]:mx-[64px] w-[40px] min-[500px]:w-[48px]"
       />
       {device == "desktop" && (
         <div className="h-[1px] bg-[white]/25 scale-x-105 origin-left z-50"></div>
@@ -44,7 +44,7 @@ export default function Header() {
       <nav
         className={`${
           font.className
-        } block min-[375px]:flex justify-end transition-[backdrop-filter] duration-300 pl-[32px] min-[375px]:px-[40px] min-[768px]:px-[64px] w-[254px] min-[375px]:min-w-[640px] min-[768px]:w-[736px] bg-transparent min-[375px]:bg-white/5 h-full absolute top-0 right-0 min-[375px]:static overflow-hidden ${
+        } block min-[500px]:flex justify-end transition-[backdrop-filter] duration-300 pl-[32px] min-[500px]:px-[40px] min-[1000px]:px-[64px] w-[254px] min-[500px]:min-w-[640px] min-[1000px]:w-[736px] bg-transparent min-[500px]:bg-white/5 h-full absolute top-0 right-0 min-[500px]:static overflow-hidden ${
           navState == "open" && device == "mobile"
             ? "pointer-events-auto backdrop-blur-md"
             : null
@@ -66,11 +66,11 @@ export default function Header() {
             </button>
           </div>
         )}
-        <ul className="mt-[48px] min-[375px]:mt-[initial] flex flex-col min-[375px]:flex-row gap-[32px] h-fit min-[375px]:h-full">
+        <ul className="mt-[48px] min-[500px]:mt-[initial] flex flex-col min-[500px]:flex-row gap-[32px] h-fit min-[500px]:h-full">
           {tabs.map((currTab, i) => (
             <li
               key={currTab}
-              className={`relative group h-full translation-transform duration-300 ${
+              className={`text-white relative group h-full translation-transform duration-300 ${
                 navState == "open" || device != "mobile"
                   ? "translate-x-0"
                   : "translate-x-[calc(100%+5px)]"
@@ -81,17 +81,17 @@ export default function Header() {
                 className="flex cursor-pointer h-full items-center w-full"
                 onClick={() => setTab(currTab)}
               >
-                <div className="text-[16px] flex items-center gap-[8px] min-[375px]:gap-[12px]">
+                <div className="text-[16px] flex items-center gap-[8px] min-[500px]:gap-[12px]">
                   <span className="font-bold">0{i}</span>
                   <span className="uppercase">{currTab}</span>
                 </div>
               </button>
               <div
-                className={`h-full w-[3px] absolute right-0 top-0 min-[375px]:bottom-0 min-[375px]:top-[initial] min-[375px]:right-[initial] min-[375px]:h-[3px] min-[375px]:w-full ${
+                className={`h-full w-[3px] absolute right-0 top-0 min-[500px]:bottom-0 min-[500px]:top-[initial] min-[500px]:right-[initial] min-[500px]:h-[3px] min-[500px]:w-full ${
                   tab == currTab
                     ? "bg-white scale-100"
-                    : "bg-white/50 scale-y-0 group-hover:scale-100 min-[375px]:scale-y-[initial] min-[375px]:scale-x-0"
-                } transition-transform origin-top min-[375px]:origin-left duration-300`}
+                    : "bg-white/50 scale-y-0 group-hover:scale-100 min-[500px]:scale-y-[initial] min-[500px]:scale-x-0"
+                } transition-transform origin-top min-[500px]:origin-left duration-300`}
               ></div>
             </li>
           ))}
